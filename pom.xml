@@ -4,7 +4,7 @@
 	<groupId>ro.ibt.hyperfiuse</groupId>
 	<artifactId>hyperfiuse-java-rest-helper</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1</version>
+	<version>0.1.4</version>
 	<name>hyperfiuse-java-rest-helper</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>

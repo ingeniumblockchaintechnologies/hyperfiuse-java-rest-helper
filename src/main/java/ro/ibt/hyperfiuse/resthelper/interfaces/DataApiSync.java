@@ -1,7 +1,6 @@
 package ro.ibt.hyperfiuse.resthelper.interfaces;
 
-import java.util.concurrent.ExecutionException;
-
+import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
 import ro.ibt.hyperfiuse.resthelper.rest.models.ResponseObject;
 import ro.ibt.hyperfiuse.resthelper.rest.models.ResponseObjectList;
 
@@ -16,21 +15,41 @@ public interface DataApiSync
 	 * @param skip Number of records to skip
 	 * @param limit Max records to retrieve
 	 * @return ResponseObjectList
-	 * @throws ExecutionException
-	 * @throws InterruptedException
+	 * @throws DataRestResponseException
 	 */
-	public ResponseObjectList listJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws InterruptedException, ExecutionException;
+	public ResponseObjectList listJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
 
 	/**
-	 * List JSON schema details for specified entity. Associated API: /_catalog/_JsonSchema/{entityName}
+	 * List JSON schema details for specified schema/table. Associated API: /_catalog/_JsonSchema/{schemaName}
 	 * 
 	 * @param token User token
-	 * @param entityName Name of the entity to retrieve from the system
+	 * @param schemaName Name of the schema/table to retrieve from the system
 	 * @param integrityCheck Perform read with record integrity check
 	 * @param gZip Archive response
 	 * @return
-	 * @throws ExecutionException
-	 * @throws InterruptedException
+	 * @throws DataRestResponseException
 	 */
-	public ResponseObject getJsonSchema(String token, String entityName, boolean integrityCheck, boolean gZip) throws InterruptedException, ExecutionException;
+	public ResponseObject getJsonSchema(String token, String schemaName, boolean integrityCheck, boolean gZip) throws DataRestResponseException;
+
+	/**
+	 * Create a schema/table/collection based on a JSON string schema
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param jsonSchema
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public ResponseObject createJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
+
+	/**
+	 * Update a schema/table/collection based on a JSON string schema
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param jsonSchema
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public ResponseObject updateJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
 }

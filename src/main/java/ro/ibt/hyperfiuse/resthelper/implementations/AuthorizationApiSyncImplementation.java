@@ -1,15 +1,12 @@
 package ro.ibt.hyperfiuse.resthelper.implementations;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
 import org.asynchttpclient.BoundRequestBuilder;
-import org.asynchttpclient.Response;
 
 import com.google.gson.Gson;
 
 import ro.ibt.hyperfiuse.resthelper.HyperFiuseApi;
 import ro.ibt.hyperfiuse.resthelper.classes.ApiImplementation;
+import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
 import ro.ibt.hyperfiuse.resthelper.interfaces.AuthorizationApiSync;
 import ro.ibt.hyperfiuse.resthelper.rest.auth.OAuthToken;
 
@@ -25,7 +22,7 @@ public class AuthorizationApiSyncImplementation extends ApiImplementation implem
 	}
 
 	@Override
-	public OAuthToken getToken(String authorizationCode) throws InterruptedException, ExecutionException {
+	public OAuthToken getToken(String authorizationCode) throws DataRestResponseException {
 
 		// Bound Request
 		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAuthorizationNodeUrl().concat("/token"));
@@ -39,17 +36,13 @@ public class AuthorizationApiSyncImplementation extends ApiImplementation implem
 		postRequest.addFormParam("grant_type", "authorization_code");
 		postRequest.addFormParam("code", authorizationCode);
 
-		// Execute the POST request
-		Future<Response> responseFuture = postRequest.execute();
+		String requestResponse = executeSyncRequest(postRequest);
 
-		// Attempt response extraction
-		Response responseBound = responseFuture.get();
-
-		return (new Gson()).fromJson(responseBound.getResponseBody(), OAuthToken.class);
+		return (new Gson()).fromJson(requestResponse, OAuthToken.class);
 	}
 
 	@Override
-	public OAuthToken getToken(String username, String password) throws InterruptedException, ExecutionException {
+	public OAuthToken getToken(String username, String password) throws DataRestResponseException {
 
 		// Bound Request
 		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAuthorizationNodeUrl().concat("/token"));
@@ -64,12 +57,8 @@ public class AuthorizationApiSyncImplementation extends ApiImplementation implem
 		postRequest.addFormParam("username", username);
 		postRequest.addFormParam("password", password);
 
-		// Execute the POST request
-		Future<Response> responseFuture = postRequest.execute();
+		String requestResponse = executeSyncRequest(postRequest);
 
-		// Attempt response extraction
-		Response responseBound = responseFuture.get();
-
-		return (new Gson()).fromJson(responseBound.getResponseBody(), OAuthToken.class);
+		return (new Gson()).fromJson(requestResponse, OAuthToken.class);
 	}
 }
