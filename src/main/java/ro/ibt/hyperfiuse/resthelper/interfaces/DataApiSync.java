@@ -1,8 +1,8 @@
 package ro.ibt.hyperfiuse.resthelper.interfaces;
 
 import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
-import ro.ibt.hyperfiuse.resthelper.rest.models.ResponseObject;
-import ro.ibt.hyperfiuse.resthelper.rest.models.ResponseObjectList;
+import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObject;
+import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObjectList;
 
 public interface DataApiSync
 {
@@ -17,7 +17,7 @@ public interface DataApiSync
 	 * @return ResponseObjectList
 	 * @throws DataRestResponseException
 	 */
-	public ResponseObjectList listJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
+	public RecordObjectList listJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
 
 	/**
 	 * List JSON schema details for specified schema/table. Associated API: /_catalog/_JsonSchema/{schemaName}
@@ -29,7 +29,7 @@ public interface DataApiSync
 	 * @return
 	 * @throws DataRestResponseException
 	 */
-	public ResponseObject getJsonSchema(String token, String schemaName, boolean integrityCheck, boolean gZip) throws DataRestResponseException;
+	public RecordObject getJsonSchema(String token, String schemaName, boolean integrityCheck, boolean gZip) throws DataRestResponseException;
 
 	/**
 	 * Create a schema/table/collection based on a JSON string schema
@@ -40,7 +40,7 @@ public interface DataApiSync
 	 * @return
 	 * @throws DataRestResponseException
 	 */
-	public ResponseObject createJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
+	public RecordObject createJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
 
 	/**
 	 * Update a schema/table/collection based on a JSON string schema
@@ -51,5 +51,66 @@ public interface DataApiSync
 	 * @return
 	 * @throws DataRestResponseException
 	 */
-	public ResponseObject updateJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
+	public RecordObject updateJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException;
+
+	/**
+	 * Insert a record into the specified schema. The body is validated and sanitized by the JSON schema
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param record
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public RecordObject insertRecord(String token, String schemaName, Object record) throws DataRestResponseException;
+
+	/**
+	 * List all available records for the specified schema
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param integrityCheck
+	 * @param gZip
+	 * @param skip
+	 * @param limit
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public RecordObjectList listRecords(String token, String schemaName, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
+
+	/**
+	 * List a specific record for the specified schema and record id
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param integrityCheck
+	 * @param gZip
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public RecordObject getRecord(String token, String schemaName, String recordId, boolean integrityCheck, boolean gZip) throws DataRestResponseException;
+
+	/**
+	 * Update a record from the specified schema and record id. The body is validated and sanitized by the JSON schema. Record to be updated must be provided in JSON format
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param recordId
+	 * @param jsonRecord
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public RecordObject updateRecord(String token, String schemaName, String recordId, String jsonRecord) throws DataRestResponseException;
+
+	/**
+	 * Update a record from the specified schema and record id. The body is validated and sanitized by the JSON schema. Record to be updated should be provided in a POJO
+	 * 
+	 * @param token
+	 * @param schemaName
+	 * @param recordId
+	 * @param objectRecord
+	 * @return
+	 * @throws DataRestResponseException
+	 */
+	public RecordObject updateRecord(String token, String schemaName, String recordId, Object objectRecord) throws DataRestResponseException;
 }

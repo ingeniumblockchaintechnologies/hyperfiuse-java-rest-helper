@@ -5,7 +5,7 @@ import java.util.List;
 
 import ro.ibt.hyperfiuse.resthelper.rest.data.DataRestResponse;
 
-public class ResponseObjectList extends DataRestResponse
+public class RecordObjectList extends DataRestResponse
 {
 	/**
 	 * Generated serial version ID
@@ -15,12 +15,12 @@ public class ResponseObjectList extends DataRestResponse
 	/**
 	 * Data field containing the list of received objects
 	 */
-	List<ResponseObject> data;
+	List<RecordObject> data;
 
 	/**
 	 * @return the data
 	 */
-	public List<ResponseObject> getData() {
+	public List<RecordObject> getData() {
 
 		return data != null ? data : (data = new ArrayList<>());
 	}
@@ -28,7 +28,7 @@ public class ResponseObjectList extends DataRestResponse
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(List<ResponseObject> data) {
+	public void setData(List<RecordObject> data) {
 
 		this.data = data;
 	}

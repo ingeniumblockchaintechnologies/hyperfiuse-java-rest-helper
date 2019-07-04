@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import ro.ibt.hyperfiuse.resthelper.rest.data.DataRestResponse;
 
-public class ResponseObject extends DataRestResponse
+public class RecordObject extends DataRestResponse
 {
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class ResponseObject extends DataRestResponse
 
 	private Object data;
 
-	private boolean validated = false;
+	private boolean validated;
 
 	private String permission;
 
@@ -94,11 +94,11 @@ public class ResponseObject extends DataRestResponse
 	 * @return
 	 * @return
 	 */
-	public <T extends Object> T getData(Class<T> classOfEntity) {
+	public <T extends Object> T getData(Class<T> classOfSchema) {
 
 		// retrieve the entity from the object
 		Gson gson = new Gson();
-		return gson.fromJson(gson.toJson(data), classOfEntity);
+		return gson.fromJson(gson.toJson(data), classOfSchema);
 	}
 
 	/**
