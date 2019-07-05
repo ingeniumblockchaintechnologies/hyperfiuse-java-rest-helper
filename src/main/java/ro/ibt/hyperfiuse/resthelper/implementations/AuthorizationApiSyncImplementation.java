@@ -12,7 +12,6 @@ import ro.ibt.hyperfiuse.resthelper.rest.auth.OAuthToken;
 
 public class AuthorizationApiSyncImplementation extends ApiImplementation implements AuthorizationApiSync
 {
-
 	/**
 	 * Implementation constructor, we need to inject the HTTP client. It is recommended to reuse to HTTP client along the entire application
 	 */
