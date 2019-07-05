@@ -1,6 +1,5 @@
 package ro.ibt.hyperfiuse.resthelper.interfaces;
 
-import ro.ibt.hyperfiuse.resthelper.classes.JsonRule;
 import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
 import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObject;
 import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObjectList;
@@ -129,20 +128,4 @@ public interface DataApiSync
 	 * @throws DataRestResponseException
 	 */
 	public RecordObjectList filter(String token, String schemaName, String queryJson, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
-
-	/**
-	 * Perform a filtered query on a schema. JsonRule object creates a query following rules of JQuery QueryBuilder https://querybuilder.js.org/demo.html. Associated API: POST /data/{EntityName}/{recordId}
-	 * 
-	 * @param token
-	 * @param schemaName
-	 * @param queryBuilder
-	 * @param integrityCheck
-	 * @param gZip
-	 * @param skip
-	 * @param limit
-	 * @return
-	 * @throws DataRestResponseException
-	 */
-	public RecordObjectList filter(String token, String schemaName, JsonRule queryBuilder, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException;
-
 }

@@ -8,7 +8,6 @@ import com.google.gson.JsonParser;
 
 import ro.ibt.hyperfiuse.resthelper.HyperFiuseApi;
 import ro.ibt.hyperfiuse.resthelper.classes.ApiImplementation;
-import ro.ibt.hyperfiuse.resthelper.classes.JsonRule;
 import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
 import ro.ibt.hyperfiuse.resthelper.interfaces.DataApiSync;
 import ro.ibt.hyperfiuse.resthelper.rest.models.DataRequest;
@@ -214,13 +213,6 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 
 	@Override
 	public RecordObjectList filter(String token, String schemaName, String queryJson, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
-
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RecordObjectList filter(String token, String schemaName, JsonRule queryBuilder, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
 
 		// TODO Auto-generated method stub
 		return null;
