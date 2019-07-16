@@ -1,6 +1,6 @@
 package ro.ibt.hyperfiuse.resthelper.interfaces;
 
-public interface AuthorizationApiAsync
+public interface AuthenticationApiAsync
 {
 
 }

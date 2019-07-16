@@ -7,15 +7,15 @@ import com.google.gson.Gson;
 import ro.ibt.hyperfiuse.resthelper.HyperFiuseApi;
 import ro.ibt.hyperfiuse.resthelper.classes.ApiImplementation;
 import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
-import ro.ibt.hyperfiuse.resthelper.interfaces.AuthorizationApiSync;
+import ro.ibt.hyperfiuse.resthelper.interfaces.AuthenticationApiSync;
 import ro.ibt.hyperfiuse.resthelper.rest.auth.OAuthToken;
 
-public class AuthorizationApiSyncImplementation extends ApiImplementation implements AuthorizationApiSync
+public class AuthenticationApiSyncImplementation extends ApiImplementation implements AuthenticationApiSync
 {
 	/**
 	 * Implementation constructor, we need to inject the HTTP client. It is recommended to reuse to HTTP client along the entire application
 	 */
-	public AuthorizationApiSyncImplementation(HyperFiuseApi root) {
+	public AuthenticationApiSyncImplementation(HyperFiuseApi root) {
 
 		super(root);
 	}
@@ -24,7 +24,7 @@ public class AuthorizationApiSyncImplementation extends ApiImplementation implem
 	public OAuthToken getToken(String authorizationCode) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAuthorizationNodeUrl().concat("/token"));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -44,7 +44,7 @@ public class AuthorizationApiSyncImplementation extends ApiImplementation implem
 	public OAuthToken getToken(String username, String password) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAuthorizationNodeUrl().concat("/token"));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");

@@ -1,5 +1,7 @@
 package ro.ibt.hyperfiuse.resthelper.implementations;
 
+import java.util.List;
+
 import org.asynchttpclient.BoundRequestBuilder;
 
 import com.google.gson.Gson;
@@ -13,6 +15,7 @@ import ro.ibt.hyperfiuse.resthelper.interfaces.DataApiSync;
 import ro.ibt.hyperfiuse.resthelper.rest.models.DataRequest;
 import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObject;
 import ro.ibt.hyperfiuse.resthelper.rest.models.RecordObjectList;
+import ro.ibt.querybuildercreator.models.RuleGroup;
 
 public class DataApiSyncImplementation extends ApiImplementation implements DataApiSync
 {
@@ -25,7 +28,7 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObjectList listJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
+	public RecordObjectList listEntitiesJsonSchemas(String token, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
 
 		// Bound Request
 		BoundRequestBuilder getRequest = getRoot().getAsyncHttpClient().prepareGet(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema"));
@@ -46,10 +49,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject getJsonSchema(String token, String schemaName, boolean integrityCheck, boolean gZip) throws DataRestResponseException {
+	public RecordObject getEntityJsonSchema(String token, String entityName, boolean integrityCheck, boolean gZip) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder getRequest = getRoot().getAsyncHttpClient().prepareGet(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(schemaName));
+		BoundRequestBuilder getRequest = getRoot().getAsyncHttpClient().prepareGet(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(entityName));
 
 		// define request header
 		getRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -65,10 +68,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject createJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException {
+	public RecordObject createEntityJsonSchema(String token, String entityName, String jsonSchema) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(schemaName));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(entityName));
 
 		// define request header
 		postRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -85,10 +88,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject updateJsonSchema(String token, String schemaName, String jsonSchema) throws DataRestResponseException {
+	public RecordObject updateEntityJsonSchema(String token, String entityName, String jsonSchema) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(schemaName));
+		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/catalog/_JsonSchema").concat("/").concat(entityName));
 
 		// define request header
 		putRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -105,21 +108,17 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject insertRecord(String token, String schemaName, Object record) throws DataRestResponseException {
+	public RecordObject insertRecord(String token, String entityName, Object record) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(schemaName));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(entityName));
 
 		// define request header
 		postRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
 		postRequest.addHeader("Content-type", "application/json");
 
-		// create request body object
-		DataRequest dataRequest = new DataRequest();
-		dataRequest.setData(record);
-
 		// set body
-		postRequest.setBody((new Gson()).toJson(dataRequest));
+		postRequest.setBody((new Gson()).toJson(new DataRequest(record)));
 
 		// Execute the POST request
 		String requestResponse = executeSyncRequest(postRequest);
@@ -150,10 +149,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject getRecord(String token, String schemaName, String recordId, boolean integrityCheck, boolean gZip) throws DataRestResponseException {
+	public RecordObject getRecord(String token, String entityName, String recordId, boolean integrityCheck, boolean gZip) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder getRequest = getRoot().getAsyncHttpClient().prepareGet(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(schemaName).concat("/").concat(recordId));
+		BoundRequestBuilder getRequest = getRoot().getAsyncHttpClient().prepareGet(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(entityName).concat("/").concat(recordId));
 
 		// define request header
 		getRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -169,10 +168,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject updateRecord(String token, String schemaName, String recordId, String jsonRecord) throws DataRestResponseException {
+	public RecordObject updateRecord(String token, String entityName, String recordId, String jsonRecord) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(schemaName).concat("/").concat(recordId));
+		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(entityName).concat("/").concat(recordId));
 
 		// define request header
 		putRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -191,10 +190,10 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObject updateRecord(String token, String schemaName, String recordId, Object objectRecord) throws DataRestResponseException {
+	public RecordObject updateRecord(String token, String entityName, String recordId, Object objectRecord) throws DataRestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(schemaName).concat("/").concat(recordId));
+		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/data").concat("/").concat(entityName).concat("/").concat(recordId));
 
 		// define request header
 		putRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
@@ -202,7 +201,6 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 
 		// set body
 		putRequest.setBody((new Gson()).toJson(new DataRequest(objectRecord)));
-		System.out.println("JSON body:" + (new Gson()).toJson(new DataRequest(objectRecord)));
 
 		// Execute the POST request
 		String requestResponse = executeSyncRequest(putRequest);
@@ -212,9 +210,96 @@ public class DataApiSyncImplementation extends ApiImplementation implements Data
 	}
 
 	@Override
-	public RecordObjectList filter(String token, String schemaName, String queryJson, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
+	public RecordObjectList filter(String token, String entityName, String queryJson, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
 
-		// TODO Auto-generated method stub
-		return null;
+		// Bound Request
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/data/advancedFilter").concat("/").concat(entityName));
+
+		// define request header
+		postRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
+		postRequest.addHeader("Content-type", "application/json");
+
+		// define request parameters
+		postRequest.addQueryParam("integrityCheck", String.valueOf(integrityCheck));
+		postRequest.addQueryParam("gZip", String.valueOf(gZip));
+		postRequest.addQueryParam("skip", String.valueOf(skip));
+		postRequest.addQueryParam("limit", String.valueOf(limit));
+
+		// set body - add above layer fields "data": ...
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.add("data", new JsonParser().parse(queryJson).getAsJsonObject());
+		postRequest.setBody(jsonObject.toString());
+
+		// execute request
+		String requestResponse = executeSyncRequest(postRequest);
+
+		// return response object
+		return (new Gson()).fromJson(requestResponse, RecordObjectList.class);
+	}
+
+	@Override
+	public RecordObjectList filter(String token, String entityName, RuleGroup queryObject, boolean integrityCheck, boolean gZip, int skip, int limit) throws DataRestResponseException {
+
+		// Bound Request
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/data/advancedFilter").concat("/").concat(entityName));
+
+		// define request header
+		postRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
+		postRequest.addHeader("Content-type", "application/json");
+
+		// define request parameters
+		postRequest.addQueryParam("integrityCheck", String.valueOf(integrityCheck));
+		postRequest.addQueryParam("gZip", String.valueOf(gZip));
+		postRequest.addQueryParam("skip", String.valueOf(skip));
+		postRequest.addQueryParam("limit", String.valueOf(limit));
+
+		// set body - add above layer fields "data": ...
+		postRequest.setBody((new Gson()).toJson(new DataRequest(queryObject)));
+
+		// execute request
+		String requestResponse = executeSyncRequest(postRequest);
+
+		// return response object
+		return (new Gson()).fromJson(requestResponse, RecordObjectList.class);
+	}
+
+	@Override
+	public RecordObjectList insertBulk(String token, String entityName, List<?> recordsList) throws DataRestResponseException {
+
+		// Bound Request
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/data/bulk").concat("/").concat(entityName));
+
+		// define request header
+		postRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
+		postRequest.addHeader("Content-type", "application/json");
+
+		// set body - add above layer fields "data": ...
+		postRequest.setBody((new Gson()).toJson(new DataRequest(recordsList)));
+
+		// execute request
+		String requestResponse = executeSyncRequest(postRequest);
+
+		// return response object
+		return (new Gson()).fromJson(requestResponse, RecordObjectList.class);
+	}
+
+	@Override
+	public RecordObject requestSync(String token, String entityName, String recordId) throws DataRestResponseException {
+
+		// Bound Request
+		BoundRequestBuilder putRequest = getRoot().getAsyncHttpClient().preparePut(getRoot().getConfiguration().getDataNodeUrl().concat("/data/reqsync").concat("/").concat(entityName).concat("/").concat(recordId));
+
+		// define request header
+		putRequest.addHeader("Authorization", "Bearer ".concat(" ".concat(token)));
+		putRequest.addHeader("Content-type", "application/json");
+
+		// set body
+		putRequest.setBody((new Gson()).toJson(new DataRequest(null)));
+
+		// Execute the PUT request
+		String requestResponse = executeSyncRequest(putRequest);
+
+		// return response object
+		return (new Gson()).fromJson(requestResponse, RecordObject.class);
 	}
 }

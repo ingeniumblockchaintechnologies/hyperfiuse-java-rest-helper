@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
 import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
 import ro.ibt.hyperfiuse.resthelper.rest.auth.OAuthToken;
 
-public interface AuthorizationApiSync
+public interface AuthenticationApiSync
 {
 	/**
 	 * Get an oAuth token based on the authorization code obtain after /authorise call

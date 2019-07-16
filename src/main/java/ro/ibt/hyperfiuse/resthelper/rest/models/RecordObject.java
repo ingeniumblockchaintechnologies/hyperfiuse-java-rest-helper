@@ -94,11 +94,11 @@ public class RecordObject extends DataRestResponse
 	 * @return
 	 * @return
 	 */
-	public <T extends Object> T getData(Class<T> classOfSchema) {
+	public <T extends Object> T getData(Class<T> classOfEntity) {
 
 		// retrieve the entity from the object
 		Gson gson = new Gson();
-		return gson.fromJson(gson.toJson(data), classOfSchema);
+		return gson.fromJson(gson.toJson(data), classOfEntity);
 	}
 
 	/**

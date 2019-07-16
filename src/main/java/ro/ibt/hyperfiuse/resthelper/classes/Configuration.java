@@ -28,9 +28,9 @@ public class Configuration
 	private String dataNodeUrl = "";
 
 	/**
-	 * Authorization node api url.
+	 * Authentication node api url.
 	 */
-	private String authorizationNodeUrl = "";
+	private String autheticationNodeUrl = "";
 
 	/**
 	 * [INTERNAL USAGE ONLY] Switch debug mode: log all request and response data
@@ -116,22 +116,6 @@ public class Configuration
 	}
 
 	/**
-	 * @return the authNodeUrl
-	 */
-	public String getAuthorizationNodeUrl() {
-
-		return authorizationNodeUrl;
-	}
-
-	/**
-	 * @param authNodeUrl the authNodeUrl to set
-	 */
-	public void setAuthorizationNodeUrl(String authorizationNodeUrl) {
-
-		this.authorizationNodeUrl = authorizationNodeUrl;
-	}
-
-	/**
 	 * @return the debugMode
 	 */
 	public boolean isDebugMode() {
@@ -177,6 +161,16 @@ public class Configuration
 	public void setReadTimeout(int readTimeout) {
 
 		this.readTimeout = readTimeout;
+	}
+
+	public String getAutheticationNodeUrl() {
+
+		return autheticationNodeUrl;
+	}
+
+	public void setAutheticationNodeUrl(String autheticationNodeUrl) {
+
+		this.autheticationNodeUrl = autheticationNodeUrl;
 	}
 
 	/**

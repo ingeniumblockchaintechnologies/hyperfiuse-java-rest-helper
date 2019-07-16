@@ -7,9 +7,9 @@ import org.asynchttpclient.DefaultAsyncHttpClientConfig;
 import org.asynchttpclient.Dsl;
 
 import ro.ibt.hyperfiuse.resthelper.classes.Configuration;
-import ro.ibt.hyperfiuse.resthelper.implementations.AuthorizationApiSyncImplementation;
+import ro.ibt.hyperfiuse.resthelper.implementations.AuthenticationApiSyncImplementation;
 import ro.ibt.hyperfiuse.resthelper.implementations.DataApiSyncImplementation;
-import ro.ibt.hyperfiuse.resthelper.interfaces.AuthorizationApiSync;
+import ro.ibt.hyperfiuse.resthelper.interfaces.AuthenticationApiSync;
 import ro.ibt.hyperfiuse.resthelper.interfaces.DataApiSync;
 
 public class HyperFiuseApi
@@ -20,9 +20,9 @@ public class HyperFiuseApi
 	private Configuration configuration;
 
 	/**
-	 * Sync version of authorization node API
+	 * Sync version of authentication node API
 	 */
-	private AuthorizationApiSync authorizationApiSync;
+	private AuthenticationApiSync authenticationApiSync;
 
 	/**
 	 * Sync version of data node API
@@ -46,12 +46,12 @@ public class HyperFiuseApi
 		// private String clientId = "";
 		// private String clientSecret = "";
 		// private String dataNodeUrl = "";
-		// private String authorizationNodeUrl = "";
+		// private String authenticationNodeUrl = "";
 		// create the HTTP client object
 		setUpAsyncHttpClient();
 
 		// set api's
-		this.authorizationApiSync = new AuthorizationApiSyncImplementation(this);
+		this.authenticationApiSync = new AuthenticationApiSyncImplementation(this);
 		this.dataApiSync = new DataApiSyncImplementation(this);
 	}
 
@@ -84,11 +84,11 @@ public class HyperFiuseApi
 	}
 
 	/**
-	 * @return the authorizationApiSync
+	 * @return the authenticationApiSync
 	 */
-	public AuthorizationApiSync getAuthorizationApiSync() {
+	public AuthenticationApiSync getAuthenticationApiSync() {
 
-		return authorizationApiSync;
+		return authenticationApiSync;
 	}
 
 	/**
