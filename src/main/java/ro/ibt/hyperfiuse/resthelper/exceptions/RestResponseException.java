@@ -1,6 +1,6 @@
 package ro.ibt.hyperfiuse.resthelper.exceptions;
 
-public class DataRestResponseException extends Exception
+public class RestResponseException extends Exception
 {
 	/**
 	 * 
@@ -9,23 +9,23 @@ public class DataRestResponseException extends Exception
 
 	private String code;
 
-	public DataRestResponseException(String message) {
+	public RestResponseException(String message) {
 
 		super(message);
 	}
 
-	public DataRestResponseException(String message, Throwable cause) {
+	public RestResponseException(String message, Throwable cause) {
 
 		super(message, cause);
 	}
 
-	public DataRestResponseException(String message, String code, Throwable cause) {
+	public RestResponseException(String message, String code, Throwable cause) {
 
 		super(message, cause);
 		this.code = code;
 	}
 
-	public DataRestResponseException(String message, String code) {
+	public RestResponseException(String message, String code) {
 
 		super(message);
 		this.code = code;

@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.12/junit-4.12-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/asynchttpclient/async-http-client/2.9.0/async-http-client-2.9.0.jar" sourcepath="M2_REPO/org/asynchttpclient/async-http-client/2.9.0/async-http-client-2.9.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/asynchttpclient/async-http-client-netty-utils/2.9.0/async-http-client-netty-utils-2.9.0.jar" sourcepath="M2_REPO/org/asynchttpclient/async-http-client-netty-utils/2.9.0/async-http-client-netty-utils-2.9.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-buffer/4.1.33.Final/netty-buffer-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-buffer/4.1.33.Final/netty-buffer-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-common/4.1.33.Final/netty-common-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-common/4.1.33.Final/netty-common-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar" sourcepath="M2_REPO/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-http/4.1.33.Final/netty-codec-http-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-http/4.1.33.Final/netty-codec-http-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-transport/4.1.33.Final/netty-transport-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-transport/4.1.33.Final/netty-transport-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-resolver/4.1.33.Final/netty-resolver-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-resolver/4.1.33.Final/netty-resolver-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec/4.1.33.Final/netty-codec-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec/4.1.33.Final/netty-codec-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-handler/4.1.33.Final/netty-handler-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-handler/4.1.33.Final/netty-handler-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-socks/4.1.33.Final/netty-codec-socks-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-socks/4.1.33.Final/netty-codec-socks-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-handler-proxy/4.1.33.Final/netty-handler-proxy-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-handler-proxy/4.1.33.Final/netty-handler-proxy-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-transport-native-epoll/4.1.33.Final/netty-transport-native-epoll-4.1.33.Final-linux-x86_64.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-transport-native-unix-common/4.1.33.Final/netty-transport-native-unix-common-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-transport-native-unix-common/4.1.33.Final/netty-transport-native-unix-common-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-resolver-dns/4.1.33.Final/netty-resolver-dns-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-resolver-dns/4.1.33.Final/netty-resolver-dns-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-dns/4.1.33.Final/netty-codec-dns-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-dns/4.1.33.Final/netty-codec-dns-4.1.33.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar" sourcepath="M2_REPO/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/typesafe/netty/netty-reactive-streams/2.0.0/netty-reactive-streams-2.0.0.jar" sourcepath="M2_REPO/com/typesafe/netty/netty-reactive-streams/2.0.0/netty-reactive-streams-2.0.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" sourcepath="M2_REPO/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar"/>
-  <classpathentry kind="src" path="/jquery-querybuilder-query-creator"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.12/junit-4.12-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/asynchttpclient/async-http-client/2.9.0/async-http-client-2.9.0.jar" sourcepath="M2_REPO/org/asynchttpclient/async-http-client/2.9.0/async-http-client-2.9.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/asynchttpclient/async-http-client-netty-utils/2.9.0/async-http-client-netty-utils-2.9.0.jar" sourcepath="M2_REPO/org/asynchttpclient/async-http-client-netty-utils/2.9.0/async-http-client-netty-utils-2.9.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-buffer/4.1.33.Final/netty-buffer-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-buffer/4.1.33.Final/netty-buffer-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-common/4.1.33.Final/netty-common-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-common/4.1.33.Final/netty-common-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar" sourcepath="M2_REPO/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-http/4.1.33.Final/netty-codec-http-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-http/4.1.33.Final/netty-codec-http-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-transport/4.1.33.Final/netty-transport-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-transport/4.1.33.Final/netty-transport-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-resolver/4.1.33.Final/netty-resolver-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-resolver/4.1.33.Final/netty-resolver-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec/4.1.33.Final/netty-codec-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec/4.1.33.Final/netty-codec-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-handler/4.1.33.Final/netty-handler-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-handler/4.1.33.Final/netty-handler-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-socks/4.1.33.Final/netty-codec-socks-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-socks/4.1.33.Final/netty-codec-socks-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-handler-proxy/4.1.33.Final/netty-handler-proxy-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-handler-proxy/4.1.33.Final/netty-handler-proxy-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-transport-native-epoll/4.1.33.Final/netty-transport-native-epoll-4.1.33.Final-linux-x86_64.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-transport-native-unix-common/4.1.33.Final/netty-transport-native-unix-common-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-transport-native-unix-common/4.1.33.Final/netty-transport-native-unix-common-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-resolver-dns/4.1.33.Final/netty-resolver-dns-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-resolver-dns/4.1.33.Final/netty-resolver-dns-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-dns/4.1.33.Final/netty-codec-dns-4.1.33.Final.jar" sourcepath="M2_REPO/io/netty/netty-codec-dns/4.1.33.Final/netty-codec-dns-4.1.33.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar" sourcepath="M2_REPO/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/typesafe/netty/netty-reactive-streams/2.0.0/netty-reactive-streams-2.0.0.jar" sourcepath="M2_REPO/com/typesafe/netty/netty-reactive-streams/2.0.0/netty-reactive-streams-2.0.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" sourcepath="M2_REPO/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar"/>
+	<classpathentry kind="src" path="/jquery-querybuilder-query-creator"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/jquery-querybuilder-query-creator/target/classes"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

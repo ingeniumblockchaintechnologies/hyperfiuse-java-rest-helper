@@ -9,7 +9,7 @@ import org.asynchttpclient.Response;
 import com.google.gson.Gson;
 
 import ro.ibt.hyperfiuse.resthelper.HyperFiuseApi;
-import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
+import ro.ibt.hyperfiuse.resthelper.exceptions.RestResponseException;
 import ro.ibt.hyperfiuse.resthelper.rest.data.DataRestResponse;
 
 public abstract class ApiImplementation
@@ -42,7 +42,7 @@ public abstract class ApiImplementation
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	protected String executeSyncRequest(BoundRequestBuilder request) throws DataRestResponseException {
+	protected String executeSyncRequest(BoundRequestBuilder request) throws RestResponseException {
 
 		// Execute the request
 		Future<Response> responseFuture = request.execute();
@@ -56,11 +56,11 @@ public abstract class ApiImplementation
 		}
 		catch (InterruptedException e) {
 
-			throw new DataRestResponseException(e.getMessage(), "-1", e);
+			throw new RestResponseException(e.getMessage(), "-1", e);
 		}
 		catch (ExecutionException e) {
 
-			throw new DataRestResponseException(e.getMessage(), "-2", e);
+			throw new RestResponseException(e.getMessage(), "-2", e);
 		}
 
 		// do we have a great expected response or some bad stuff ?
@@ -70,7 +70,7 @@ public abstract class ApiImplementation
 			if (responseBound.getResponseBody() == null || responseBound.getResponseBody().equals("")) {
 
 				// throw an error with the status code and text received
-				throw new DataRestResponseException(responseBound.getStatusText(), String.valueOf(responseBound.getStatusCode()));
+				throw new RestResponseException(responseBound.getStatusText(), String.valueOf(responseBound.getStatusCode()));
 			}
 			else {
 
@@ -81,12 +81,12 @@ public abstract class ApiImplementation
 				if (dataRestResponse == null) {
 
 					// received response is not a standard code,message JSON as expected from server
-					throw new DataRestResponseException("Invalid error response ", "-3");
+					throw new RestResponseException("Invalid error response ", "-3");
 				}
 				else {
 
 					// throw an error with the proper server message
-					throw new DataRestResponseException(dataRestResponse.getMessage(), dataRestResponse.getCode());
+					throw new RestResponseException(dataRestResponse.getMessage(), dataRestResponse.getCode());
 				}
 			}
 		}
@@ -95,7 +95,7 @@ public abstract class ApiImplementation
 		if (responseBound.getResponseBody() == null || responseBound.getResponseBody().equals("")) {
 
 			// we have a no-no situation
-			throw new DataRestResponseException("Web response is missing a body", "-4");
+			throw new RestResponseException("Web response is missing a body", "-4");
 		}
 
 		return responseBound.getResponseBody();

@@ -6,14 +6,15 @@ import com.google.gson.Gson;
 
 import ro.ibt.hyperfiuse.resthelper.HyperFiuseApi;
 import ro.ibt.hyperfiuse.resthelper.classes.ApiImplementation;
-import ro.ibt.hyperfiuse.resthelper.exceptions.DataRestResponseException;
+import ro.ibt.hyperfiuse.resthelper.exceptions.RestResponseException;
 import ro.ibt.hyperfiuse.resthelper.interfaces.AuthenticationApiSync;
 import ro.ibt.hyperfiuse.resthelper.rest.auth.OAuthToken;
 
-public class AuthenticationApiSyncImplementation extends ApiImplementation implements AuthenticationApiSync
-{
+public class AuthenticationApiSyncImplementation extends ApiImplementation implements AuthenticationApiSync {
+
 	/**
-	 * Implementation constructor, we need to inject the HTTP client. It is recommended to reuse to HTTP client along the entire application
+	 * Implementation constructor, we need to inject the HTTP client. It is
+	 * recommended to reuse to HTTP client along the entire application
 	 */
 	public AuthenticationApiSyncImplementation(HyperFiuseApi root) {
 
@@ -21,10 +22,11 @@ public class AuthenticationApiSyncImplementation extends ApiImplementation imple
 	}
 
 	@Override
-	public OAuthToken getToken(String authorizationCode) throws DataRestResponseException {
+	public OAuthToken getToken(String authorizationCode) throws RestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient()
+				.preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -41,10 +43,11 @@ public class AuthenticationApiSyncImplementation extends ApiImplementation imple
 	}
 
 	@Override
-	public OAuthToken getToken(String username, String password) throws DataRestResponseException {
+	public OAuthToken getToken(String username, String password) throws RestResponseException {
 
 		// Bound Request
-		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient().preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
+		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient()
+				.preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
