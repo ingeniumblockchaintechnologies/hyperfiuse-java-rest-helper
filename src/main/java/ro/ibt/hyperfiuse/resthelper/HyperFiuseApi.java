@@ -9,20 +9,32 @@ import org.asynchttpclient.Dsl;
 import ro.ibt.hyperfiuse.resthelper.classes.Configuration;
 import ro.ibt.hyperfiuse.resthelper.implementations.AuthorizationApiSyncImplementation;
 import ro.ibt.hyperfiuse.resthelper.implementations.DataApiSyncImplementation;
+import ro.ibt.hyperfiuse.resthelper.interfaces.AuthenticationApiSync;
+import ro.ibt.hyperfiuse.resthelper.interfaces.AuthorizationApiAsync;
 import ro.ibt.hyperfiuse.resthelper.interfaces.AuthorizationApiSync;
+import ro.ibt.hyperfiuse.resthelper.interfaces.DataApiAsync;
 import ro.ibt.hyperfiuse.resthelper.interfaces.DataApiSync;
 
-public class HyperFiuseApi
-{
+public class HyperFiuseApi {
 	/**
 	 * Configuration instance with default settings (to be reset if required).
 	 */
 	private Configuration configuration;
 
 	/**
-	 * Sync version of authentication node API
+	 * Sync version of authorization node API
 	 */
-	private AuthorizationApiSync authenticationApiSync;
+	private AuthenticationApiSync authenticationApiSync;
+
+	/**
+	 * Sync version of authorization node API
+	 */
+	private AuthorizationApiSync authorizationApiSync;
+
+	/**
+	 * Async version of authorization node API
+	 */
+	private AuthorizationApiAsync authorizationApiAsync;
 
 	/**
 	 * Sync version of data node API
@@ -30,7 +42,13 @@ public class HyperFiuseApi
 	private DataApiSync dataApiSync;
 
 	/**
-	 * Async Http client - will be used for server HTTP calls, must be reused within the application
+	 * Async version of data node API
+	 */
+	private DataApiAsync dataApiAsync;
+
+	/**
+	 * Async Http client - will be used for server HTTP calls, must be reused within
+	 * the application
 	 */
 	private AsyncHttpClient asyncHttpClient;
 
@@ -51,7 +69,7 @@ public class HyperFiuseApi
 		setUpAsyncHttpClient();
 
 		// set api's
-		this.authenticationApiSync = new AuthorizationApiSyncImplementation(this);
+		this.authorizationApiSync = new AuthorizationApiSyncImplementation(this);
 		this.dataApiSync = new DataApiSyncImplementation(this);
 	}
 
@@ -86,9 +104,25 @@ public class HyperFiuseApi
 	/**
 	 * @return the authenticationApiSync
 	 */
-	public AuthorizationApiSync getAuthenticationApiSync() {
+	public AuthenticationApiSync getAuthenticationApiSync() {
 
 		return authenticationApiSync;
+	}
+
+	/**
+	 * @return the authenticationApiSync
+	 */
+	public AuthorizationApiSync getAuthorizationApiSync() {
+
+		return authorizationApiSync;
+	}
+
+	/**
+	 * @return the authenticationApiSync
+	 */
+	public AuthorizationApiAsync getAuthorizationApiAsync() {
+
+		return authorizationApiAsync;
 	}
 
 	/**
@@ -97,6 +131,14 @@ public class HyperFiuseApi
 	public DataApiSync getDataApiSync() {
 
 		return dataApiSync;
+	}
+
+	/**
+	 * @return the dataApiSync
+	 */
+	public DataApiAsync getDataApiAsync() {
+
+		return dataApiAsync;
 	}
 
 	/**
@@ -117,8 +159,7 @@ public class HyperFiuseApi
 			try {
 
 				this.asyncHttpClient.close();
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 
 				// never happens
 			}

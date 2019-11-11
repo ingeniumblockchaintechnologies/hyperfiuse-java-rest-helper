@@ -26,7 +26,7 @@ public class AuthenticationApiSyncImplementation extends ApiImplementation imple
 
 		// Bound Request
 		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient()
-				.preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/token"));
+				.preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -47,7 +47,7 @@ public class AuthenticationApiSyncImplementation extends ApiImplementation imple
 
 		// Bound Request
 		BoundRequestBuilder postRequest = getRoot().getAsyncHttpClient()
-				.preparePost(getRoot().getConfiguration().getDataNodeUrl().concat("/token"));
+				.preparePost(getRoot().getConfiguration().getAutheticationNodeUrl().concat("/token"));
 
 		// define request header
 		postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
